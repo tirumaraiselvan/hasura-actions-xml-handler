@@ -1,0 +1,1797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://refdata.jpmorgan.com/2012/otc-1"
+	targetNamespace="http://refdata.jpmorgan.com/2012/otc-1"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xs:include schemaLocation="../Shared/Shared.xsd"/>
+
+	<xs:complexType name="Otcs">
+		<xs:sequence>
+			<xs:element name="otc" type="Otc" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="SchemaVersion"/>
+	</xs:complexType>
+
+	<xs:complexType name="Otc">
+		<xs:sequence>
+			<xs:element name="instrumentId" type="InstrumentId" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="version" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="lastUpdatedTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="createdTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="status" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="isActive" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="modelClass" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="abbreviatedName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contributor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="issuer" type="Issuer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="assetClassifications" type="AssetClassifications" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isin" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cusip" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="countryRisk" type="CountryId" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="seniority" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="tradingMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentAlternateIdentifiers" type="InstrumentAlternateIdentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentParties" type="InstrumentParties" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentUnderlyers" type="InstrumentUnderlyers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractInstrument" type="ContractInstrument" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="action" type="xs:string"/>
+	</xs:complexType>
+
+	<xs:complexType name="Issuer">
+		<xs:sequence>
+			<xs:element name="iPartyId" type="EntityId" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AssetClassifications">
+		<xs:sequence>
+			<xs:element name="jpm" type="Jpm" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cfs" type="Cfs" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cfi" type="Cfi" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Jpm">
+		<xs:sequence>
+			<xs:element name="assetGroup" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="securityType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="securitySubtype" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="categoryType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Cfs">
+		<xs:sequence>
+			<xs:element name="assetClass" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="product" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subProduct" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="categoryType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Cfi">
+		<xs:sequence>
+			<xs:element name="cfiCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentAlternateIdentifiers">
+		<xs:sequence>
+			<xs:element name="instrumentAlternateIdentifier" type="InstrumentAlternateIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentAlternateIdentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentParties">
+		<xs:sequence>
+			<xs:element name="instrumentParty" type="InstrumentParty" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentParty">
+		<xs:sequence>
+			<xs:element name="partyIdentifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="partyIdentifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="partyRoleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentUnderlyers">
+		<xs:sequence>
+			<xs:element name="instrumentUnderlyer" type="InstrumentUnderlyer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentUnderlyer">
+		<xs:sequence>
+			<xs:element name="instrumentIdentifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentIdentifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="constituentWeight" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="constituentWeightUnitOfMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="currencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContractInstrument">
+		<xs:sequence>
+			<xs:element name="contractInstrumentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="standardContractIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="clearingEligibilityTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="forwardStartDateUnadjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="forwardStartDateAdjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="earlyTerminationAllowedIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationNoticePeriod" type="DeprecatedInteger" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationNoticeDaysCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDateRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationPartyRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="riskCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fxFeatures" type="FxFeatures" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractInstrumentFeatures" type="ContractInstrumentFeatures" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="swapContract" type="SwapContract" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="optionContract" type="OptionContract" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="forward" type="Forward" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="volatilityContract" type="VolatilityContract" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxFeatures">
+		<xs:sequence>
+			<xs:element name="fxFeature" type="FxFeature" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxFeature">
+		<xs:sequence>
+			<xs:element name="referenceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContractInstrumentFeatures">
+		<xs:sequence>
+			<xs:element name="contractInstrumentFeature" type="ContractInstrumentFeature" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContractInstrumentFeature">
+		<xs:sequence>
+			<xs:element name="contractFeatureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractFeatureValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SwapContract">
+		<xs:sequence>
+			<xs:element name="swapTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="swapTenorCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="resetRollupIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDateUnadjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDateAdjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeInitialIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeFinalIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeIntermediateIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interestRateSwap" type="InterestRateSwap" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentLegs" type="InstrumentLegs" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateSwap">
+		<xs:sequence>
+			<xs:element name="crossCurrencySwap" type="CrossCurrencySwap" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CrossCurrencySwap">
+		<xs:sequence>
+			<xs:element name="referenceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentLegs">
+		<xs:sequence>
+			<xs:element name="instrumentLeg" type="InstrumentLeg" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentLeg">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legEffectiveDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="effectiveDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="riskCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstPeriodStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstPaymentDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="unwindSettlementTimingRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="unwindRealizationDateTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legDescriptionText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legAlternateIdentifiers" type="LegAlternateIdentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legSchedules" type="LegSchedules" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentLegStubs" type="InstrumentLegStubs" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="markToMarketAdjustmentIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="varyingNotionalFixingFrequency" type="VaryingNotionalFixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="currencyFixingFrequency" type="CurrencyFixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interestRateLeg" type="InterestRateLeg" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contingentLeg" type="ContingentLeg" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="returnLeg" type="ReturnLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LegAlternateIdentifiers">
+		<xs:sequence>
+			<xs:element name="instrumentLegAlternateIdentifier" type="InstrumentLegAlternateIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentLegAlternateIdentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LegSchedules">
+		<xs:sequence>
+			<xs:element name="legSchedule" type="LegSchedule" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LegSchedule">
+		<xs:sequence>
+			<xs:element name="scheduleTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleDateComponents" type="ScheduleDateComponents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ScheduleDateComponents">
+		<xs:sequence>
+			<xs:element name="scheduleDateComponent" type="ScheduleDateComponent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ScheduleDateComponent">
+		<xs:sequence>
+			<xs:element name="scheduleDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValue" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValueTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValueCurrencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstrumentLegStubs">
+		<xs:sequence>
+			<xs:element name="stubPeriod" type="StubPeriod" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StubPeriod">
+		<xs:sequence>
+			<xs:element name="stubPeriodTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubDurationName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubCalculationFrequency" type="StubCalculationFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubPayment" type="StubPayment" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StubCalculationFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="BusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="BusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StubPayment">
+		<xs:sequence>
+			<xs:element name="stubRateTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubInterpolationRates" type="StubInterpolationRates" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StubInterpolationRates">
+		<xs:sequence>
+			<xs:element name="stubInterpolationRate" type="StubInterpolationRate" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StubInterpolationRate">
+		<xs:sequence>
+			<xs:element name="floatingIndexCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interpolationRate" type="InterpolationRate" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterpolationRate">
+		<xs:sequence>
+			<xs:element name="interpolationIndexTenorFrequency" type="InterpolationIndexTenorFrequency" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterpolationIndexTenorFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="InterpolationIndexTenorFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterpolationIndexTenorFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="InterpolationIndexTenorFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterpolationIndexTenorFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VaryingNotionalFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="VaryingNotionalFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VaryingNotionalFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="VaryingNotionalFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VaryingNotionalFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CurrencyFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="CurrencyFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CurrencyFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="CurrencyFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CurrencyFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateLeg">
+		<xs:sequence>
+			<xs:element name="dayCountFractionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstRegularPeriodStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="accrualPeriodAdjustmentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compoundingMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentFrequency" type="PaymentFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="calculationFrequency" type="CalculationFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compoundingFrequency" type="CompoundingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="financingUses" type="FinancingUses" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="managementFee" type="ManagementFee" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixedInterestRateLeg" type="FixedInterestRateLeg" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="floatingInterestRateLeg" type="FloatingInterestRateLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PaymentFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="PaymentFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PaymentFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="PaymentFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PaymentFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CalculationFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="CalculationFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CalculationFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="CalculationFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CalculationFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CompoundingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="CompoundingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CompoundingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="CompoundingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CompoundingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FinancingUses">
+		<xs:sequence>
+			<xs:element name="financingUse" type="FinancingUse" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FinancingUse">
+		<xs:sequence>
+			<xs:element name="financingUseTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="financingCalculationBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="borrowCostRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="borrowCostUnitofMeasure" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ManagementFee">
+		<xs:sequence>
+			<xs:element name="feeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="feeStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayCountFractionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FixedInterestRateLeg">
+		<xs:sequence>
+			<xs:element name="fixedInterestRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FloatingInterestRateLeg">
+		<xs:sequence>
+			<xs:element name="floatRateIndexCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="spreadRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="spreadRateUnitofMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstResetDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingValue" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingValueTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="capRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="floorRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalRateRoundingDirectionName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalRateRoundingPrecisionNumber" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexTenorFrequency" type="IndexTenorFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixingFrequency" type="FixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="resetFrequency" type="ResetFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLeg" type="InflationLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IndexTenorFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="IndexTenorFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IndexTenorFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="IndexTenorFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IndexTenorFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="FixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="FixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResetFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="ResetFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResetFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="ResetFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResetFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InflationLeg">
+		<xs:sequence>
+			<xs:element name="indexReferenceSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="publicationSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interpolationMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedAssetIdentifier" type="Deprecated" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedAssetIdentifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedAssetIdentifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedInterestRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContingentLeg">
+		<xs:sequence>
+			<xs:element name="terminationPaymentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditReferenceObligation" type="CreditReferenceObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEvents" type="CreditEvents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditReferenceObligation">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="entityName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inDefaultIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="singleNameObligation" type="SingleNameObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexObligation" type="IndexObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexTrancheObligation" type="IndexTrancheObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditReferenceObligationAlternateidentifiers" type="CreditReferenceObligationAlternateidentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="obligationCreditEvents" type="ObligationCreditEvents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SingleNameObligation">
+		<xs:sequence>
+			<xs:element name="creditReferenceSeniority" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaTransactionType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaTemplate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaDefinitionYear" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IndexObligation">
+		<xs:sequence>
+			<xs:element name="indexSeries" type="Deprecated" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexSeriesName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexSeriesNumber" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexFactor" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexMaturityDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexSeriesLastCreditEventDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IndexTrancheObligation">
+		<xs:sequence>
+			<xs:element name="trancheAttachmentPointPercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="trancheDetachmentPointPercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditReferenceObligationAlternateidentifiers">
+		<xs:sequence>
+			<xs:element name="creditReferenceObligationAlternateidentifier" type="CreditReferenceObligationAlternateidentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditReferenceObligationAlternateidentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ObligationCreditEvents">
+		<xs:sequence>
+			<xs:element name="obligationCreditEvent" type="ObligationCreditEvent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ObligationCreditEvent">
+		<xs:sequence>
+			<xs:element name="creditEventDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEventTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="recoveryAuctionDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="recoveryRatePercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEventSettlementDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditEvents">
+		<xs:sequence>
+			<xs:element name="creditEvent" type="CreditEvent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditEvent">
+		<xs:sequence>
+			<xs:element name="eventType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLeg">
+		<xs:sequence>
+			<xs:element name="returnTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="returnPaymentCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="unwindMethodologyName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstResetDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compoundingMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="resetFrequency" type="ReturnLegResetFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentFrequency" type="ReturnLegPaymentFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalValuationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalPaymentDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="returnPaymentReferenceCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="constantNotionalExposureIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="returnLegUnderlyers" type="ReturnLegUnderlyers" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegResetFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToNameMessageAttribute" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="ReturnLegResetFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegResetFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="ReturnLegResetFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegResetFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegPaymentFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="ReturnLegPaymentFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegPaymentFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="ReturnLegPaymentFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegPaymentFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegUnderlyers">
+		<xs:sequence>
+			<xs:element name="returnLegUnderlyer" type="ReturnLegUnderlyer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegUnderlyer">
+		<xs:sequence>
+			<xs:element name="instrumentIdentifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentIdentifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="returnLegUnderlyerAlternateIdentifiers" type="ReturnLegUnderlyerAlternateIdentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialPrice" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialPriceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialPriceCleanDirtyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="constituentWeight" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="constituentWeightUnitOfMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="currencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomePayoutRatio" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomePaymentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomeSpreadAmount" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomeSpreadUnitOfMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomeSettlementTimingRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="incomePaymentOffsetDaysCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dividendPayoutTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="specialDividendsPayoutRatio" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="materialDividendsPayoutRatio" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dividendReinvestmentIndicator" type="DeprecatedBoolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dividendPeriodEffectiveDate" type="DeprecatedDate" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dividendPeriodEndDate" type="DeprecatedDate" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegUnderlyerAlternateIdentifiers">
+		<xs:sequence>
+			<xs:element name="returnLegUnderlyerAlternateIdentifier" type="ReturnLegUnderlyerAlternateIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReturnLegUnderlyerAlternateIdentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OptionContract">
+		<xs:sequence>
+			<xs:element name="optionContractTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="optionPutOrCall" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exerciseStyleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationDateUnadjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationDateAdjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationTimeUnadjusted" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationTimeAdjusted" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationHourMinuteTime" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="expirationBusinessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="earliestExerciseTime" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="earliestExerciseHourMinuteTime" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="earliestExerciseBusinessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="rebatePayoffAmount" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="rebatePayoffCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exerciseProcedureTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractSize" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="strikePrice" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="strikePriceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="strikePriceMultiplierAmount" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="priceNotationTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="underlyerInstrumentId" type="UnderlyerInstrumentId" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="optionBarriers" type="OptionBarriers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fxOptionContract" type="FxOptionContract" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="swaption" type="Swaption" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerInstrumentId">
+		<xs:sequence>
+			<xs:element name="identifierValue" type="Deprecated" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierDomain" type="Deprecated" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OptionBarriers">
+		<xs:sequence>
+			<xs:element name="optionBarrier" type="OptionBarrier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OptionBarrier">
+		<xs:sequence>
+			<xs:element name="barrierTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierDirectionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierTriggerValue" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierTriggerValueUnitofMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierTermName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierEndDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierMonitoringTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierPayoutTimingName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierPayoutAmount" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="barrierPayoutCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxOptionContract">
+		<xs:sequence>
+			<xs:element name="referenceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Swaption">
+		<xs:sequence>
+			<xs:element name="underlyerSwapTerms" type="UnderlyerSwapTerms" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTerms">
+		<xs:sequence>
+			<xs:element name="contractInstrumentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="standardContractIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="clearingEligibilityTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="forwardStartDateUnadjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="forwardStartDateAdjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="earlyTerminationAllowedIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationNoticeDaysCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="riskCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractInstrumentFeatures" type="UnderlyerSwapTermsContractInstrumentFeatures" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="swapContract" type="UnderlyerSwapTermsSwapContract" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsContractInstrumentFeatures">
+		<xs:sequence>
+			<xs:element name="contractInstrumentFeature" type="UnderlyerSwapTermsContractInstrumentFeaturesContractInstrumentFeature" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsContractInstrumentFeaturesContractInstrumentFeature">
+		<xs:sequence>
+			<xs:element name="contractFeatureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contractFeatureValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContract">
+		<xs:sequence>
+			<xs:element name="swapTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="swapTenorCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="resetRollupIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDateUnadjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDateAdjusted" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeInitialIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeFinalIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="principalExchangeIntermediateIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interestRateSwap" type="UnderlyerSwapTermsSwapContractInterestRateSwap" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentLegs" type="UnderlyerSwapTermsSwapContractInstrumentLegs" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInterestRateSwap">
+		<xs:sequence>
+			<xs:element name="crossCurrencySwap" type="UnderlyerSwapTermsSwapContractInterestRateSwapCrossCurrencySwap" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInterestRateSwapCrossCurrencySwap">
+		<xs:sequence>
+			<xs:element name="referenceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegs">
+		<xs:sequence>
+			<xs:element name="instrumentLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLeg" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLeg">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legEffectiveDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="effectiveDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="riskCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstPeriodStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstPaymentDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="unwindSettlementTimingRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="unwindRealizationDateTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legDescriptionText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legAlternateIdentifiers" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegAlternateIdentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legSchedules" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedules" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentLegStubs" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubs" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="markToMarketAdjustmentIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="varyingNotionalFixingFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="currencyFixingFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interestRateLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLeg" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contingentLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegAlternateIdentifiers">
+		<xs:sequence>
+			<xs:element name="instrumentLegAlternateIdentifier" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegAlternateIdentifiersInstrumentLegAlternateIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegAlternateIdentifiersInstrumentLegAlternateIdentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedules">
+		<xs:sequence>
+			<xs:element name="legSchedule" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegSchedule" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegSchedule">
+		<xs:sequence>
+			<xs:element name="scheduleTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleDateComponents" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegScheduleScheduleDateComponents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegScheduleScheduleDateComponents">
+		<xs:sequence>
+			<xs:element name="scheduleDateComponent" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegScheduleScheduleDateComponentsScheduleDateComponent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegLegSchedulesLegScheduleScheduleDateComponentsScheduleDateComponent">
+		<xs:sequence>
+			<xs:element name="scheduleDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValue" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValueTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduleValueCurrencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubs">
+		<xs:sequence>
+			<xs:element name="stubPeriod" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriod" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriod">
+		<xs:sequence>
+			<xs:element name="stubPeriodTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubDurationName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubCalculationFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubPayment" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPayment" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubCalculationFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPayment">
+		<xs:sequence>
+			<xs:element name="stubRateTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="stubInterpolationRates" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRates" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRates">
+		<xs:sequence>
+			<xs:element name="stubInterpolationRate" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRate" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRate">
+		<xs:sequence>
+			<xs:element name="floatingIndexCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interpolationRate" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRate" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRate">
+		<xs:sequence>
+			<xs:element name="interpolationIndexTenorFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequency" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInstrumentLegStubsStubPeriodStubPaymentStubInterpolationRatesStubInterpolationRateInterpolationRateInterpolationIndexTenorFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegVaryingNotionalFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegCurrencyFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLeg">
+		<xs:sequence>
+			<xs:element name="dayCountFractionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstRegularPeriodStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="accrualPeriodAdjustmentTypeName" type="Deprecated" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compoundingMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="calculationFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="compoundingFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="financingUses" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFinancingUses" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="managementFee" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegManagementFee" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixedInterestRateLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFixedInterestRateLeg" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="floatingInterestRateLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegPaymentFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCalculationFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegCompoundingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFinancingUses">
+		<xs:sequence>
+			<xs:element name="financingUse" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFinancingUsesFinancingUse" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFinancingUsesFinancingUse">
+		<xs:sequence>
+			<xs:element name="financingUseTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="financingCalculationBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="borrowCostRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="borrowCostUnitofMeasure" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegManagementFee">
+		<xs:sequence>
+			<xs:element name="feeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="feeStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayCountFractionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFixedInterestRateLeg">
+		<xs:sequence>
+			<xs:element name="fixedInterestRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLeg">
+		<xs:sequence>
+			<xs:element name="floatRateIndexCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="spreadRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="spreadRateUnitofMeasureName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="firstResetDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingValue" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingValueTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="initialFixingDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="capRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="floorRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalRateRoundingDirectionName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finalRateRoundingPrecisionNumber" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexTenorFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixingFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="resetFrequency" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLeg" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegInflationLeg" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegIndexTenorFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegResetFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegInterestRateLegFloatingInterestRateLegInflationLeg">
+		<xs:sequence>
+			<xs:element name="indexReferenceSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="publicationSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interpolationMethodName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedAssetIdentifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedAssetIdentifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inflationLinkedInterestRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLeg">
+		<xs:sequence>
+			<xs:element name="terminationPaymentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditReferenceObligation" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEvents" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditEvents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligation">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="entityName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="inDefaultIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="singleNameObligation" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationSingleNameObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexObligation" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationIndexObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexTrancheObligation" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationIndexTrancheObligation" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditReferenceObligationAlternateidentifiers" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationCreditReferenceObligationAlternateidentifiers" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="obligationCreditEvents" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationObligationCreditEvents" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationSingleNameObligation">
+		<xs:sequence>
+			<xs:element name="creditReferenceSeniority" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaTransactionType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaTemplate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isdaDefinitionYear" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationIndexObligation">
+		<xs:sequence>
+			<xs:element name="indexSeriesName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexSeriesNumber" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexFactor" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexMaturityDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexSeriesLastCreditEventDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationIndexTrancheObligation">
+		<xs:sequence>
+			<xs:element name="trancheAttachmentPointPercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="trancheDetachmentPointPercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationCreditReferenceObligationAlternateidentifiers">
+		<xs:sequence>
+			<xs:element name="creditReferenceObligationAlternateidentifier" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationCreditReferenceObligationAlternateidentifiersCreditReferenceObligationAlternateidentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationCreditReferenceObligationAlternateidentifiersCreditReferenceObligationAlternateidentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationObligationCreditEvents">
+		<xs:sequence>
+			<xs:element name="obligationCreditEvent" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationObligationCreditEventsObligationCreditEvent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditReferenceObligationObligationCreditEventsObligationCreditEvent">
+		<xs:sequence>
+			<xs:element name="creditEventDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEventTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="recoveryAuctionDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="recoveryRatePercent" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="creditEventSettlementDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditEvents">
+		<xs:sequence>
+			<xs:element name="creditEvent" type="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditEventsCreditEvent" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnderlyerSwapTermsSwapContractInstrumentLegsInstrumentLegContingentLegCreditEventsCreditEvent">
+		<xs:sequence>
+			<xs:element name="eventType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Forward">
+		<xs:sequence>
+			<xs:element name="forwardContractTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fxContract" type="FxContract" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interestRateForward" type="InterestRateForward" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxContract">
+		<xs:sequence>
+			<xs:element name="referenceCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="quoteBasisName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valueDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fxNonDeliverableForward" type="FxNonDeliverableForward" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="instrumentLegs" type="FxContractInstrumentLegs" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxNonDeliverableForward">
+		<xs:sequence>
+			<xs:element name="fixingDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixingRateSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ndfFixingRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxContractInstrumentLegs">
+		<xs:sequence>
+			<xs:element name="instrumentLeg" type="FxContractInstrumentLegsInstrumentLeg" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxContractInstrumentLegsInstrumentLeg">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legEffectiveDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="effectiveDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="terminationDateBusinessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="settlementTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="riskCurrencyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legDescriptionText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="legAlternateIdentifiers" type="FxContractInstrumentLegsInstrumentLegLegAlternateIdentifiers" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxContractInstrumentLegsInstrumentLegLegAlternateIdentifiers">
+		<xs:sequence>
+			<xs:element name="instrumentLegAlternateIdentifier" type="FxContractInstrumentLegsInstrumentLegLegAlternateIdentifiersInstrumentLegAlternateIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FxContractInstrumentLegsInstrumentLegLegAlternateIdentifiersInstrumentLegAlternateIdentifier">
+		<xs:sequence>
+			<xs:element name="identifierDomain" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierValue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierSourceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="identifierTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForward">
+		<xs:sequence>
+			<xs:element name="fixedInterestRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayCountFractionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="floatRateIndexCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentTimingRuleName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="discountCurveName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="indexTenorFrequency" type="InterestRateForwardIndexTenorFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fixingFrequency" type="InterestRateForwardFixingFrequency" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardIndexTenorFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="InterestRateForwardIndexTenorFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardIndexTenorFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="InterestRateForwardIndexTenorFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardIndexTenorFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardFixingFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="InterestRateForwardFixingFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardFixingFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="InterestRateForwardFixingFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InterestRateForwardFixingFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VolatilityContract">
+		<xs:sequence>
+			<xs:element name="volatilityContractTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="maturityDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="volatilityStrikeTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="StrikeRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="observationStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="observationEndDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="annualizationFactor" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="futuresPriceValuationIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="marketDisruptionIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="observationFrequency" type="ObservationFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paymentFrequency" type="VolatilityContractPaymentFrequency" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dividendAdjustmentTypeName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="volatilityCapRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="volatilityFloorRate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="notionalMultiplier" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ObservationFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="ObservationFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ObservationFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="ObservationFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ObservationFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VolatilityContractPaymentFrequency">
+		<xs:sequence>
+			<xs:element name="frequencyCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyMultiplier" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="daysOffsetCount" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessDayConventionCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dayTypeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dateRelativeToName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollConvention" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="frequencyRollWeekdayInstanceName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="businessCenters" type="VolatilityContractPaymentFrequencyBusinessCenters" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VolatilityContractPaymentFrequencyBusinessCenters">
+		<xs:sequence>
+			<xs:element name="businessCenter" type="VolatilityContractPaymentFrequencyBusinessCentersBusinessCenter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VolatilityContractPaymentFrequencyBusinessCentersBusinessCenter">
+		<xs:sequence>
+			<xs:element name="businessCenterCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="otcs" type="Otcs"/>
+	
+	<xs:complexType name="ReferenceData">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="otcs" type="Otcs"/>
+		</xs:choice>
+		<xs:attribute name="version" type="SchemaVersion"/>
+	</xs:complexType>
+
+	<xs:element name="referenceData" type="ReferenceData" />
+</xs:schema>
