@@ -1,48 +1,59 @@
-const parseString = require('xml2js').parseString;
-const stripPrefix = require('xml2js').processors.stripPrefix;
-const express = require('express')
+import {parseString} from 'xml2js';
+import {processors} from 'xml2js';
+const stripPrefix = processors.stripPrefix;
+
+import express from 'express';
+import fetch from 'node-fetch';
+
+import config from './config.js';
+
 const app = express()
 const port = process.env.PORT || 3000
 
-const fs = require('fs')
+const xmlHandler = async function sampleActionHandler(res, upstreamEndpoint) {
 
-let sampleActionHandler = async function sampleActionHandler(res) {
-  fs.readFile('response.xml', 'utf8', (err, xml) => {
-    if (err) {
-      console.error(err)
-      return
+  console.log(upstreamEndpoint);
+
+  // Make a request to the upstream endpoint
+  // TODO: convert graphql input to params/payload for upstream endpoint
+  const response = await fetch(upstreamEndpoint);
+  if (!response.ok) {
+    // return error
+    res.status(500).send('Unexpected response from upstream endpoint: ' + upstreamEndpoint);
+    return;
+  }
+
+  // Extract the response body and attempt parsing XML into JSON
+  const responseData = await response.text();
+  parseString(responseData,
+    {
+      tagNameProcessors: [stripPrefix] // Apply processors to convert XML tags into the appropriate format
+    },
+    function (err, result) {
+      if (err) {
+        console.error(err);
+        res.status(500)
+          .send('Could not parse XML/convert to JSON for response received from: ' + upstreamEndpoint);
+        return;
+      }
+      res.json(result);
     }
-    var samplexml = "<root>Hello xml2js!</root>"
-    console.log(xml)
-
-    parseString(xml,
-      {
-        tagNameProcessors: [stripPrefix]
-        //      attrNameProcessors: [stripPrefix],
-        //      valueProcessors: [stripPrefix],
-        //      attrValueProcessors: [stripPrefix]
-      },
-      function (err, result) {
-        console.log(JSON.stringify(result, null, 2));
-        res.json(result);
-      });
-  });
-}
-
+  );
+};
 
 app.get('/:actionName', async (req, res) => {
 
-  switch (req.params.actionName) {
-    case 'sampleXML':
-      sampleActionHandler(res);
-      break;
-    default:
-      console.log('empty path value');
-      res.send('empty path value');
+  // Use actionName to find the appropriate endpoint
+  const upstreamEndpoint = config.actionEndpointMapping[req.params.actionName];
+
+  if (upstreamEndpoint) {
+      xmlHandler(res, upstreamEndpoint);
+  } else {
+    res.status(404).send('Could find upstream endpoint for action name: ' + req.params.actionName);
   }
-})
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
+  console.log(config);
+  console.log(`XML handler listening at http://localhost:${port}`)
+});
