@@ -12,10 +12,12 @@ const port = process.env.PORT || 3000
 
 const xmlHandler = async function sampleActionHandler(res, upstreamEndpoint) {
 
-  console.log(upstreamEndpoint);
+  console.log('Hitting this upstream endpoint: ' + upstreamEndpoint);
+
+  // TODO: convert graphql input to params/payload for upstream endpoint
+  // const requestPayload = json2xml(req.body);
 
   // Make a request to the upstream endpoint
-  // TODO: convert graphql input to params/payload for upstream endpoint
   const response = await fetch(upstreamEndpoint);
   if (!response.ok) {
     // return error
